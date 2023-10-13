@@ -13,19 +13,21 @@ private:
     ListElement* first, * last;
     unsigned counter;
 public:
-    List() : first(NULL), last(NULL), counter(0) {}
+    List() : first(nullptr), last(nullptr), counter(0) {}
     ~List() {
-        ListElement* element;
         while (first) {
-            element = first->next;
+            ListElement* element = first->next;
             delete first;
             first = element;
         }
     }
-    
-    unsigned unshift(ListElement* element) {
+
+    unsigned unshift(int newKey) {
+        ListElement* element = new ListElement;
+        element->key = newKey;
+
         element->next = first;
-        element->prev = NULL;
+        element->prev = nullptr;
 
         if (first) {
             first->prev = element;
@@ -34,7 +36,23 @@ public:
         if (!last) {
             last = first;
         }
-        
+        return ++counter;
+    }
+
+    unsigned push(int newKey) {
+        ListElement* element = new ListElement;
+        element->key = newKey;
+
+        element->next = nullptr;
+        element->prev = last;
+
+        if (last) {
+            last->next = element;
+        }
+        last = element;
+        if (!first) {
+            first = last;
+        }
         return ++counter;
     }
 
@@ -44,8 +62,7 @@ public:
             return;
         }
 
-        ListElement* element;
-        element = first;
+        ListElement* element = first;
 
         cout << "----------------Wszystkie elementy listy----------------\n";
         while (element)
@@ -60,15 +77,21 @@ public:
 int main()
 {
     List list1;
-    ListElement* element;
+
+    // Wypisanie pustej listy
+    list1.printList();
 
     // Dodanie 5 elementów na początek listy
-    for (unsigned i = 0; i < 5; i++)
+    for (size_t i = 0; i < 5; i++)
     {
-        element = new ListElement;
-        element->key = i + 1;
-        list1.unshift(element);
+        list1.unshift(i + 1);
     }
+
+    list1.printList();
+
+    // Dodanie elementu na koniec listy
+    list1.push(6);
+    list1.push(9);
 
     list1.printList();
 }
