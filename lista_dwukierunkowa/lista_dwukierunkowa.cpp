@@ -5,7 +5,7 @@ using namespace std;
 struct ListElement {
     ListElement* prev;
     ListElement* next;
-    char key;
+    int key;
 };
 
 class List {
@@ -22,7 +22,7 @@ public:
         }
     }
 
-    unsigned unshift(char newKey) {
+    unsigned unshift(int newKey) {
         ListElement* element = new ListElement;
         element->key = newKey;
 
@@ -39,7 +39,7 @@ public:
         return ++counter;
     }
 
-    unsigned push(char newKey) {
+    unsigned push(int newKey) {
         ListElement* element = new ListElement;
         element->key = newKey;
 
@@ -84,14 +84,14 @@ int main()
     // Dodanie 5 elementów na początek listy
     for (size_t i = 0; i < 5; i++)
     {
-        list1.unshift('a');
+        list1.unshift(i + 1);
     }
 
     list1.printList();
 
     // Dodanie elementu na koniec listy
-    list1.push('6');
-    list1.push('9');
+    list1.push(6);
+    list1.push(9);
 
     list1.printList();
 }
