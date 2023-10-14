@@ -94,6 +94,4 @@ int main()
     list1.push('9');
 
     list1.printList();
-    list1.unshift('0');
-    list1.printList();
 }
