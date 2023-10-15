@@ -56,6 +56,32 @@ public:
         return ++counter;
     }
 
+    unsigned insert(int newKey, unsigned position) {
+        if (position == 0) {
+			return unshift(newKey);
+		}
+        if (position >= counter) {
+			return push(newKey);
+		}
+
+		ListElement* element = new ListElement;
+		element->key = newKey;
+
+		ListElement* current = first;
+        for (size_t i = 0; i < position - 1; i++)
+        {
+			current = current->next;
+		}
+
+		element->next = current->next;
+		element->prev = current;
+
+		current->next->prev = element;
+		current->next = element;
+
+		return ++counter;
+	}
+
     void printList() {
         if (!first) {
             cout << "\nLista jest pusta\n";
@@ -92,6 +118,17 @@ int main()
     // Dodanie elementu na koniec listy
     list1.push(6);
     list1.push(9);
+
+    list1.printList();
+
+    // Dodanie elementu na pozycję 3
+    list1.insert(7, 3);
+
+    // Dodanie elementu na pozycję 0
+    list1.insert(0, 0);
+
+    // Dodanie elementu na pozycję 10
+    list1.insert(10, 10);
 
     list1.printList();
 }
