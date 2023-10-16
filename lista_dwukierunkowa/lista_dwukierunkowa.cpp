@@ -159,22 +159,4 @@ int main()
     list1.shift();
 
     list1.printList();
-
-    list1.printList();
-
-    list1.printList();
-
-    list1.printList();
-
-    list1.printList();
-
-    // Dodanie drugiej listy
-    List list2;
-
-    for (size_t i = 0; i < 5; i++)
-    {
-		list2.unshift(i + 1);
-	}
-
-    list2.printList();
 }
