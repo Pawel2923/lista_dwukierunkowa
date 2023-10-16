@@ -82,6 +82,29 @@ public:
 		return ++counter;
 	}
 
+    // metoda do usunięcia elementu z początku listy
+    int shift() {
+        if (!first) {
+			cout << "\nLista jest pusta\n";
+			return 0;
+		}
+
+		ListElement* element = first;
+		int key = element->key;
+
+		first = first->next;
+        if (first) {
+			first->prev = nullptr;
+		}
+        else {
+			last = nullptr;
+		}
+
+		delete element;
+		counter--;
+		return key;
+	}
+
     void printList() {
         if (!first) {
             cout << "\nLista jest pusta\n";
@@ -129,6 +152,11 @@ int main()
 
     // Dodanie elementu na pozycję 10
     list1.insert(10, 10);
+
+    list1.printList();
+
+    // Usunięcie elementu z początku listy
+    list1.shift();
 
     list1.printList();
 }
