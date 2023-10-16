@@ -82,7 +82,6 @@ public:
 		return ++counter;
 	}
 
-    // metoda do usunięcia elementu z początku listy
     int shift() {
         if (!first) {
 			cout << "\nLista jest pusta\n";
@@ -104,6 +103,28 @@ public:
 		counter--;
 		return key;
 	}
+
+    int pop() {
+        if (!last) {
+            cout << "\nLista jest pusta\n";
+            return 0;
+        }
+
+        ListElement* element = last;
+        int key = element->key;
+
+        last = last->prev;
+        if (last) {
+            last->next = nullptr;
+        }
+        else {
+            last = nullptr;
+        }
+
+        delete element;
+        counter--;
+        return key;
+    }
 
     void printList() {
         if (!first) {
@@ -157,6 +178,11 @@ int main()
 
     // Usunięcie elementu z początku listy
     list1.shift();
+
+    list1.printList();
+
+    // Usunięcie elementu z końca listy
+    list1.pop();
 
     list1.printList();
 }
