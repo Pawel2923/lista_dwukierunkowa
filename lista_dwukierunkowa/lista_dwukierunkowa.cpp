@@ -159,4 +159,12 @@ int main()
     list1.shift();
 
     list1.printList();
+
+    list1.printList();
+
+    list1.printList();
+
+    list1.printList();
+
+    list1.printList();
 }
