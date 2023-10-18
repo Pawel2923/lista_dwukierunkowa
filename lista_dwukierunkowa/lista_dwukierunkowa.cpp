@@ -20,6 +20,8 @@ public:
             delete first;
             first = element;
         }
+        last = nullptr;
+        counter = 0;
     }
 
     unsigned unshift(int newKey) {
@@ -150,7 +152,7 @@ public:
         return key;
     }
 
-    void printList() {
+    void print() {
         if (!first) {
             cout << "\nLista jest pusta\n";
             return;
@@ -158,16 +160,16 @@ public:
 
         ListElement* element = first;
 
-        cout << "----------------Wszystkie elementy listy----------------\n";
+        cout << "-------Wszystkie elementy listy-------\n";
         while (element)
         {
             cout << element->key << " ";
             element = element->next;
         }
-        cout << "\n--------------------------------------------------------\n";
+        cout << "\n--------------------------------------\n";
     }
 
-    void printListReverse() {
+    void printReverse() {
         if (!last) {
             cout << "\nLista jest pusta\n";
             return;
@@ -175,13 +177,13 @@ public:
 
         ListElement* element = last;
 
-        cout << "----------------Wszystkie elementy listy----------------\n";
+        cout << "-----Wszystkie elementy od konca------\n";
         while (element)
         {
             cout << element->key << " ";
             element = element->prev;
         }
-        cout << "\n--------------------------------------------------------\n";
+        cout << "\n--------------------------------------\n";
     }
 
     void nextElement(unsigned position) {
@@ -213,6 +215,16 @@ public:
 
 		cout << "\nPoprzedni element: " << current->prev->key << "\n";
 	}
+
+    void clear() {
+        while (first) {
+            ListElement* element = first->next;
+            delete first;
+            first = element;
+        }
+		last = nullptr;
+		counter = 0;
+	}
 };
 
 int main()
@@ -220,7 +232,7 @@ int main()
     List list1;
 
     // Wypisanie pustej listy
-    list1.printList();
+    list1.print();
 
     // Dodanie 5 elementów na początek listy
     for (size_t i = 0; i < 5; i++)
@@ -228,13 +240,13 @@ int main()
         list1.unshift(i + 1);
     }
 
-    list1.printList();
+    list1.print();
 
     // Dodanie elementu na koniec listy
     list1.push(6);
     list1.push(9);
 
-    list1.printList();
+    list1.print();
 
     // Dodanie elementu na pozycję 3
     list1.insert(7, 3);
@@ -245,29 +257,33 @@ int main()
     // Dodanie elementu na pozycję 10
     list1.insert(10, 10);
 
-    list1.printList();
+    list1.print();
 
     // Usunięcie elementu z początku listy
     list1.shift();
 
-    list1.printList();
+    list1.print();
 
     // Usunięcie elementu z końca listy
     list1.pop();
 
-    list1.printList();
+    list1.print();
 
     // Usunięcie elementu z pozycji 3
     list1.remove(3);
 
-    list1.printList();
+    list1.print();
 
     // Wypisanie listy od końca
-    list1.printListReverse();
+    list1.printReverse();
 
     // Wypisanie następnego elementu dla elementu na pozycji 2
     list1.nextElement(2);
 
     // Wypisanie poprzedniego elementu dla elementu na pozycji 2
     list1.prevElement(2);
+
+    list1.clear();
+
+    list1.print();
 }
