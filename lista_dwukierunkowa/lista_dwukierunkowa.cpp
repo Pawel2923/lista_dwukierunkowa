@@ -198,7 +198,7 @@ public:
 			current = current->next;
 		}
 
-		cout << "\nNastepny element: " << current->next->key << "\n";
+		cout << "\nNastepny element po " << current->key << " : " << current->next->key << "\n";
 	}
 
     void prevElement(unsigned position) {
@@ -213,7 +213,7 @@ public:
 			current = current->next;
 		}
 
-		cout << "\nPoprzedni element: " << current->prev->key << "\n";
+        cout << "\Poprzedni element przed " << current->key << " : " << current->prev->key << "\n";
 	}
 
     void clear() {
