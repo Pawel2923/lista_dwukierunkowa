@@ -166,6 +166,53 @@ public:
         }
         cout << "\n--------------------------------------------------------\n";
     }
+
+    void printListReverse() {
+        if (!last) {
+            cout << "\nLista jest pusta\n";
+            return;
+        }
+
+        ListElement* element = last;
+
+        cout << "----------------Wszystkie elementy listy----------------\n";
+        while (element)
+        {
+            cout << element->key << " ";
+            element = element->prev;
+        }
+        cout << "\n--------------------------------------------------------\n";
+    }
+
+    void nextElement(unsigned position) {
+        if (position >= counter) {
+			cout << "\nNie ma takiego elementu\n";
+			return;
+		}
+
+		ListElement* current = first;
+        for (size_t i = 0; i < position; i++)
+        {
+			current = current->next;
+		}
+
+		cout << "\nNastepny element: " << current->next->key << "\n";
+	}
+
+    void prevElement(unsigned position) {
+        if (position >= counter) {
+			cout << "\nNie ma takiego elementu\n";
+			return;
+		}
+
+		ListElement* current = first;
+        for (size_t i = 0; i < position; i++)
+        {
+			current = current->next;
+		}
+
+		cout << "\nPoprzedni element: " << current->prev->key << "\n";
+	}
 };
 
 int main()
@@ -214,4 +261,13 @@ int main()
     list1.remove(3);
 
     list1.printList();
+
+    // Wypisanie listy od końca
+    list1.printListReverse();
+
+    // Wypisanie następnego elementu dla elementu na pozycji 2
+    list1.nextElement(2);
+
+    // Wypisanie poprzedniego elementu dla elementu na pozycji 2
+    list1.prevElement(2);
 }
