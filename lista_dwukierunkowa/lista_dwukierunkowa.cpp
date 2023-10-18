@@ -126,6 +126,30 @@ public:
         return key;
     }
 
+    int remove(unsigned position) {
+        if (position == 0) {
+            return shift();
+        }
+
+        if (position >= counter - 1) {
+			return pop();
+		}
+
+        ListElement* current = first;
+        for (size_t i = 0; i < position; i++)
+        {
+            current = current->next;
+        }
+        int key = current->key;
+
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+
+        delete current;
+        counter--;
+        return key;
+    }
+
     void printList() {
         if (!first) {
             cout << "\nLista jest pusta\n";
@@ -183,6 +207,11 @@ int main()
 
     // Usunięcie elementu z końca listy
     list1.pop();
+
+    list1.printList();
+
+    // Usunięcie elementu z pozycji 3
+    list1.remove(3);
 
     list1.printList();
 }
